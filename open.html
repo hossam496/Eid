@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد سعيد</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            font-family: 'Tajawal', sans-serif;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .eid-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 20px;
+        }
+
+        .eid-message {
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            transform: scale(0.95);
+            animation: scaleIn 0.5s ease-out forwards;
+            margin-bottom: 20px;
+        }
+
+        .eid-message p {
+            font-size: 3.5rem;
+            color: #d32f2f;
+            margin: 0;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            line-height: 1.4;
+        }
+
+        .apology-btn {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .apology-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            background: linear-gradient(135deg, #ff5252, #ff7676);
+        }
+
+        .greeting-message {
+            display: none;
+            background-color: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .greeting-message p {
+            font-size: 2.5rem;
+            color: #4CAF50;
+            margin: 0;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .decoration {
+            position: absolute;
+            color: rgba(211, 47, 47, 0.1);
+            font-size: 10rem;
+            z-index: -1;
+        }
+
+        .top-left {
+            top: -30px;
+            left: -30px;
+        }
+
+        .bottom-right {
+            bottom: -30px;
+            right: -30px;
+        }
+
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f44336;
+            opacity: 0;
+        }
+
+        @keyframes scaleIn {
+            from {
+                transform: scale(0.95);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+            }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .eid-message p {
+                font-size: 2.5rem;
+            }
+            
+            .greeting-message p {
+                font-size: 2rem;
+            }
+            
+            .decoration {
+                font-size: 6rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .eid-message p {
+                font-size: 2rem;
+            }
+            
+            .greeting-message p {
+                font-size: 1.5rem;
+            }
+            
+            .eid-message, .greeting-message {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="eid-container">
+        <i class="fas fa-star decoration top-left"></i>
+        <i class="fas fa-moon decoration bottom-right"></i>
+        
+        <div class="eid-message">
+            <p>اهرب يا عجل العيد قرب</p>
+        </div>
+        
+        <button class="apology-btn" onclick="showGreeting()">😂 أسف مش دي</button>
+        
+        <div class="greeting-message" id="greeting">
+            <p>كل سنة وانتوا طيبين يا اخواتي ❤️</p>
+        </div>
+    </div>
+
+    <script>
+
+        // Show greeting message
+        function showGreeting() {
+            document.getElementById('greeting').style.display = 'block';
+            createConfetti();
+        }
+
+        // Create confetti when page loads
+        window.onload = function() {
+            createConfetti();
+            
+            // Keep creating confetti every 3 seconds
+            setInterval(() => {
+                const oldConfetti = document.querySelectorAll('.confetti');
+                oldConfetti.forEach(c => c.remove());
+                createConfetti();
+            }, 3000);
+        };
+    </script>
+</body>
+</html>
